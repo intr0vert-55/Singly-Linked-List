@@ -166,7 +166,8 @@ class Main{
             }
             catch(InputMismatchException e){
                 System.out.println("Enter an integer value. Will you?");
-                break;
+                s.nextLine();       //In case if string occurs as the input to skip to the next line s.nextLine() is used
+                //break;
             }
             switch(choice){         //switch is used for convenience
                 case 1:
@@ -174,13 +175,13 @@ class Main{
                     while(j!=1){    //The same goes here as the above loop this loop will be running until the go back option is selected
                         System.out.println("1. Insert in the begining\n2. Insert in the middle\n3. Insert in the end\n4. Go Back");
                         System.out.print("Enter your choice : ");
-                        int choice1;
+                        int choice1 = 0;
                         try{
                             choice1 = s.nextInt();
                         }
                         catch(InputMismatchException e){
                             System.out.println("Enter an integer value. Will you?");
-                            break;
+                            s.nextLine();    
                         }
                         switch(choice1){
                             case 1 :
@@ -190,6 +191,7 @@ class Main{
                                 }
                                 catch(InputMismatchException e){
                                     System.out.println("This only accepts integer values sorry.\nPlease try again");
+                                    s.nextLine();        //In case if string occurs as the input to skip to the next line s.nextLine() is used
                                     break;
                                 }
                                 sll.inAtFirst(data);    //The inAt() function is called to insert the data in the begining
@@ -197,7 +199,15 @@ class Main{
                             case 2 :
                                 System.out.println("Where do you wanna insert?\n1. Before a data\n2. After a data");
                                 System.out.print("Enter your choice : ");
-                                int choice2 = s.nextInt();
+                                int choice2;
+                                try{
+                                    choice2 = s.nextInt();
+                                }
+                                catch(InputMismatchException e){
+                                    System.out.println("Please enter an integer value");
+                                    s.nextLine();
+                                    break;
+                                }
                                 switch(choice2){
                                     case 1 :    //Here it is decided if the data should be inserted before or after a data(value)
                                         try{
@@ -209,6 +219,8 @@ class Main{
                                         }
                                         catch(InputMismatchException e){
                                             System.out.println("Sorry this only accepts integer values.\nPlease try again");
+                                            s.nextLine();
+                                            break;
                                         }
                                         break;
                                     case 2 : 
@@ -221,6 +233,8 @@ class Main{
                                         }
                                         catch(InputMismatchException e){
                                             System.out.println("Sorry this only accepts integer values.\nPlease try again");
+                                            s.nextLine();
+                                            break;
                                         }
                                         break;
                                     default : 
@@ -236,6 +250,7 @@ class Main{
                             }
                             catch(InputMismatchException e){
                                 System.out.println("This only accepts integer values sorry.\nPlease try again");
+                                s.nextLine();
                                 break;
                             }
                             break;
@@ -266,6 +281,7 @@ class Main{
                     break;
                 default :
                     System.out.println("Invalid choice");
+                    break;
                     // In case values other than 1,2,3,4 are passed
             }
         }
